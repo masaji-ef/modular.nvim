@@ -1,7 +1,7 @@
 return {
   'nvim-telescope/telescope.nvim',
   event = 'VeryLazy',
-  branch = '0.1.x',
+  branch = 'master',
   dependencies = {
     'nvim-lua/plenary.nvim',
     {
@@ -38,18 +38,6 @@ return {
           '.git',
           '.venv',
         },
-        file_previewer = function(...)
-          return require('telescope.previewers').vim_buffer_cat.new(...)
-        end,
-        grep_previewer = function(...)
-          return require('telescope.previewers').vim_buffer_vimgrep.new(...)
-        end,
-        qflist_previewer = function(...)
-          return require('telescope.previewers').vim_buffer_qflist.new(...)
-        end,
-        buffer_previewer_maker = function(...)
-          return require('telescope.previewers').buffer_previewer_maker(...)
-        end,
       },
       pickers = {
         find_files = {
@@ -86,17 +74,57 @@ return {
 
     local builtin = require 'telescope.builtin'
 
-    vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = 'Telescope: Find Files' })
-    vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = 'Telescope: Live Grep' })
-    vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = 'Telescope: Grep Word' })
-    vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = 'Telescope: Diagnostics' })
-    vim.keymap.set('n', '<leader>sb', builtin.current_buffer_fuzzy_find, { desc = 'Telescope: Current Buffer' })
-    vim.keymap.set('n', '<leader>su', '<cmd>Telescope undo<cr>', { desc = 'Telescope: Undo Tree' })
-    vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'Telescope: Keymaps' })
+    vim.keymap.set(
+      'n',
+      '<leader>sf',
+      builtin.find_files,
+      { desc = 'Telescope: Find Files' }
+    )
+    vim.keymap.set(
+      'n',
+      '<leader>sg',
+      builtin.live_grep,
+      { desc = 'Telescope: Live Grep' }
+    )
+    vim.keymap.set(
+      'n',
+      '<leader>sw',
+      builtin.grep_string,
+      { desc = 'Telescope: Grep Word' }
+    )
+    vim.keymap.set(
+      'n',
+      '<leader>sd',
+      builtin.diagnostics,
+      { desc = 'Telescope: Diagnostics' }
+    )
+    vim.keymap.set(
+      'n',
+      '<leader>sb',
+      builtin.current_buffer_fuzzy_find,
+      { desc = 'Telescope: Current Buffer' }
+    )
+    vim.keymap.set(
+      'n',
+      '<leader>su',
+      '<cmd>Telescope undo<cr>',
+      { desc = 'Telescope: Undo Tree' }
+    )
+    vim.keymap.set(
+      'n',
+      '<leader>sk',
+      builtin.keymaps,
+      { desc = 'Telescope: Keymaps' }
+    )
     vim.keymap.set('n', '<leader>sn', function()
       builtin.find_files { cwd = vim.fn.stdpath 'config' }
     end, { desc = 'Telescope: Neovim Files' })
-    vim.keymap.set('n', '<leader>s<leader>', builtin.buffers, { desc = 'Telescope: Buffers' })
+    vim.keymap.set(
+      'n',
+      '<leader>s<leader>',
+      builtin.buffers,
+      { desc = 'Telescope: Buffers' }
+    )
     vim.keymap.set('n', '<leader>s/', function()
       builtin.current_buffer_fuzzy_find(
         require('telescope.themes').get_dropdown {
