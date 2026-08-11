@@ -320,14 +320,4 @@ MIT License. Based on [Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvi
 [![GitHub forks](https://img.shields.io/github/forks/masaji-ef/modular.nvim?style=for-the-badge&logo=github)](https://github.com/masaji-ef/modular.nvim/network/members)
 
 </div>
-EOF
-```
 
----
-
-## ✅ Проверка
-
-```bash
-cd ~/.config/nvim
-cat README.md | head -30
-```
