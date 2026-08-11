@@ -48,6 +48,7 @@ return {
       enable_diagnostics = true,
       sort_case_insensitive = true,
       open_files_do_not_replace_types = { 'trouble', 'qf', 'Outline' },
+      bind_to_cwd = true,
       default_component_configs = {
         container = {
           enable_character_fade = true,
@@ -70,7 +71,6 @@ return {
           folder_empty_open = '󰜌',
           default = '*',
           highlight = 'NeoTreeFileIcon',
-
           provider = function(config, node)
             if node.type == 'file' or node.type == 'terminal' then
               local name = node.name
@@ -106,7 +106,7 @@ return {
           },
         },
         file_size = {
-          enabled = false,
+          enabled = true,
           required_width = 64,
         },
         last_modified = {
@@ -126,9 +126,29 @@ return {
           end,
         },
       },
+      source_selector = {
+        winbar = true,
+        statusline = false,
+        sources = {
+          { source = 'filesystem' },
+          { source = 'buffers' },
+          { source = 'git_status' },
+        },
+        highlight_tab = 'NeoTreeTabInactive',
+        highlight_tab_active = 'NeoTreeTabActive',
+        highlight_background = 'NeoTreeTabBackground',
+      },
       window = {
         position = 'float',
-        width = 30,
+        width = 35,
+        height = 0,
+        auto_expand_width = false,
+        popup = {
+          size = {
+            height = '80%',
+            width = '60%',
+          },
+        },
         mapping_options = {
           noremap = true,
           nowait = true,
@@ -138,11 +158,11 @@ return {
           ['<2-LeftMouse>'] = 'open',
           ['<cr>'] = 'open',
           ['<esc>'] = 'cancel',
-          ['P'] = { 'toggle_preview', config = { use_float = true } },
           ['l'] = 'open',
-          ['S'] = 'open_split',
           ['s'] = 'open_vsplit',
+          ['v'] = 'open_split',
           ['t'] = 'open_tabnew',
+          ['S'] = 'open_split',
           ['w'] = 'open_with_window_picker',
           ['C'] = 'close_node',
           ['z'] = 'close_all_nodes',
@@ -162,7 +182,21 @@ return {
           ['>'] = 'next_source',
           ['i'] = 'show_file_details',
           ['h'] = 'close_node',
-          ['/'] = 'noop',
+          ['P'] = { 'toggle_preview', config = { use_float = true } },
+          ['ga'] = 'git_add_file',
+          ['gu'] = 'git_unstage_file',
+          ['gr'] = 'git_revert_file',
+          ['gc'] = 'git_commit',
+          ['gp'] = 'git_push',
+          ['gg'] = 'git_commit_and_push',
+          ['/'] = 'fuzzy_finder',
+          ['f'] = 'filter_on_submit',
+          ['<c-x>'] = 'clear_filter',
+          ['H'] = 'toggle_hidden',
+          ['<bs>'] = 'navigate_up',
+          ['.'] = 'set_root',
+          ['[g'] = 'prev_git_modified',
+          [']g'] = 'next_git_modified',
         },
       },
       filesystem = {
@@ -174,8 +208,16 @@ return {
           hide_by_name = {
             'node_modules',
             '.git',
+            '__pycache__',
+            '.venv',
+            'venv',
+            'env',
+            'build',
+            'dist',
+            'target',
+            '*.pyc',
           },
-          never_show = { '.DS_Store', 'thumbs.db' },
+          never_show = { '.DS_Store', 'thumbs.db', '*.swp', '*.swo' },
         },
         follow_current_file = {
           enabled = true,
@@ -184,18 +226,6 @@ return {
         group_empty_dirs = true,
         hijack_netrw_behavior = 'open_current',
         use_libuv_file_watcher = true,
-        window = {
-          mappings = {
-            ['<bs>'] = 'navigate_up',
-            ['.'] = 'set_root',
-            ['H'] = 'toggle_hidden',
-            ['/'] = 'fuzzy_finder',
-            ['f'] = 'filter_on_submit',
-            ['<c-x>'] = 'clear_filter',
-            ['[g'] = 'prev_git_modified',
-            [']g'] = 'next_git_modified',
-          },
-        },
       },
       buffers = {
         follow_current_file = {
@@ -204,6 +234,12 @@ return {
         },
         group_empty_dirs = true,
         show_unloaded = true,
+        window = {
+          mappings = {
+            ['d'] = 'delete_buffer',
+            ['l'] = 'open',
+          },
+        },
       },
       git_status = {
         window = {
@@ -219,13 +255,22 @@ return {
           },
         },
       },
+      document_symbols = {
+        window = {
+          mappings = {
+            ['d'] = 'delete_buffer',
+            ['l'] = 'open',
+          },
+        },
+      },
     }
 
     vim.keymap.set('n', '<leader>e', '<cmd>Neotree toggle<CR>', {
-      desc = 'Toggle Explorer',
+      desc = 'Neotree float',
     })
-    vim.keymap.set('n', '<leader>o', '<cmd>Neotree focus<CR>', {
-      desc = 'Focus Explorer',
+
+    vim.keymap.set('n', '<leader>b', '<cmd>Neotree left<CR>', {
+      desc = 'Neotree left',
     })
   end,
 }
