@@ -46,13 +46,14 @@ A modular Neovim configuration powered by [💤 lazy.nvim](https://github.com/fo
 - **Linting** — nvim-lint with luacheck, shellcheck
 - **File explorer** — neo-tree with Git status
 - **Fuzzy finder** — telescope.nvim with fzf
-- **Modern UI** — tokyonight theme, lualine, which-key
+- **Modern UI** — tokyonight theme with high contrast colors for deuteranopia, lualine, which-key
 - **Auto-save** — automatic file saving
 - **Harpoon** — quick file navigation
 - **Trouble** — diagnostics in a beautiful list
-- **Flash** — lightning fast navigation
+- **Flash** — lightning fast navigation with fuzzy search
 - **Mini suite** — icons, move, comment, indentscope, surround, trailspace, cursorword, hipatterns
 - **Gitsigns** — git decorations in sign column
+- **Auto-install** — tree-sitter CLI automatically installed on first run
 
 ---
 
@@ -74,9 +75,7 @@ git clone https://github.com/masaji-ef/modular.nvim.git ~/.config/nvim
 nvim
 ```
 
-Lazy will automatically install all plugins. Wait for installation to complete.
-
-tree-sitter CLI will be auto-installed on first run.
+Lazy will automatically install all plugins. tree-sitter CLI auto-installs on first run.
 
 ### Installing LSP/Formatting Tools
 
@@ -162,22 +161,22 @@ git merge upstream/main
 
 ### UI
 
-| Plugin                                                       | Description     |
-| ------------------------------------------------------------ | --------------- |
-| [tokyonight.nvim](https://github.com/folke/tokyonight.nvim)  | Theme           |
-| [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) | Statusline      |
-| [which-key.nvim](https://github.com/folke/which-key.nvim)    | Keymap helper   |
-| [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)  | Git decorations |
+| Plugin                                                       | Description                             |
+| ------------------------------------------------------------ | --------------------------------------- |
+| [tokyonight.nvim](https://github.com/folke/tokyonight.nvim)  | Theme with deuteranopia-friendly colors |
+| [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) | Statusline with git and LSP info        |
+| [which-key.nvim](https://github.com/folke/which-key.nvim)    | Keymap helper                           |
+| [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)  | Git decorations                         |
 
 ### Navigation
 
-| Plugin                                                             | Description          |
-| ------------------------------------------------------------------ | -------------------- |
-| [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | Fuzzy finder         |
-| [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)    | File explorer        |
-| [harpoon](https://github.com/ThePrimeagen/harpoon)                 | Quick navigation     |
-| [trouble.nvim](https://github.com/folke/trouble.nvim)              | Diagnostics          |
-| [flash.nvim](https://github.com/folke/flash.nvim)                  | Lightning navigation |
+| Plugin                                                             | Description               |
+| ------------------------------------------------------------------ | ------------------------- |
+| [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | Fuzzy finder              |
+| [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)    | File explorer             |
+| [harpoon](https://github.com/ThePrimeagen/harpoon)                 | Quick navigation          |
+| [trouble.nvim](https://github.com/folke/trouble.nvim)              | Diagnostics               |
+| [flash.nvim](https://github.com/folke/flash.nvim)                  | Lightning fast navigation |
 
 ### Syntax
 
@@ -234,6 +233,7 @@ git merge upstream/main
 | `<leader>sd` | Diagnostics    |
 | `<leader>sb` | Current buffer |
 | `<leader>su` | Undo tree      |
+| `<leader>sk` | Keymaps        |
 | `<leader>sn` | Neovim files   |
 
 ### LSP
@@ -249,12 +249,12 @@ git merge upstream/main
 
 ### Harpoon
 
-| Key           | Action              |
-| ------------- | ------------------- |
-| `<leader>ha`  | Add file            |
-| `<leader>j`   | List files          |
-| `<leader>hc`  | Clear list          |
-| `<leader>1-4` | Open file by number |
+| Key           | Action                  |
+| ------------- | ----------------------- |
+| `<leader>ha`  | Add file                |
+| `<leader>j`   | List files in Telescope |
+| `<leader>hc`  | Clear list              |
+| `<leader>1-4` | Open file by number     |
 
 ### Trouble
 
