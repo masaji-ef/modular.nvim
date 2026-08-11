@@ -3,7 +3,7 @@ return {
   branch = 'v3.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'nvim-tree/nvim-web-devicons',
+    'echasnovski/mini.icons',
     'MunifTanjim/nui.nvim',
     {
       's1n7ax/nvim-window-picker',
@@ -73,8 +73,8 @@ return {
 
           provider = function(config, node)
             if node.type == 'file' or node.type == 'terminal' then
-              local ext = vim.fn.fnamemodify(name, ':e')
-              local icon, hl = require('nvim-web-devicons').get_icon(name, ext)
+              local name = node.name
+              local icon, hl = require('mini.icons').get('file', name)
               if not icon then
                 icon = config.default or '*'
                 hl = 'DevIconDefault'

@@ -98,7 +98,6 @@ for _, map in ipairs(mappings) do
   vim.keymap.set(map[1], map[2], map[3], desc(map[4]))
 end
 
--- [[ Replace word ]]
 local function escape_pattern(str)
   return str:gsub('[%%%.%+%-%*%?%^%$%(%)%[%]]', '%%%1')
 end

@@ -20,7 +20,7 @@
 
 [Features](#-features) •
 [Installation](#-installation) •
-[Structure](#-structure) •
+[Forking](#-forking--updates) •
 [Plugins](#-plugins) •
 [Keymaps](#-keymaps) •
 [License](#-license)
@@ -40,7 +40,7 @@ A modular Neovim configuration powered by [💤 lazy.nvim](https://github.com/fo
 - **Modular structure** — plugins organized by category
 - **Lazy loading** — fast startup with `lazy.nvim`
 - **Mason integration** — automatic LSP/formatting tool installation
-- **LSP support** — Lua, Python, Bash, C/C++, Rust, and more
+- **LSP support** — Lua, Python, Bash, C/C++ and more
 - **Auto-completion** — nvim-cmp with snippets
 - **Formatting** — conform.nvim with prettierd, ruff, stylua, shfmt, clang-format
 - **Linting** — nvim-lint with luacheck, shellcheck
@@ -49,70 +49,10 @@ A modular Neovim configuration powered by [💤 lazy.nvim](https://github.com/fo
 - **Modern UI** — rose-pine theme, lualine, which-key
 - **Auto-save** — automatic file saving
 - **Harpoon** — quick file navigation
-- **Git integration** — gitsigns, Git status in explorer
-
----
-
-## 📦 Included Plugins
-
-### 🧩 Core
-
-| Plugin                                                                                    | Description        |
-| ----------------------------------------------------------------------------------------- | ------------------ |
-| [lazy.nvim](https://github.com/folke/lazy.nvim)                                           | Plugin manager     |
-| [mason.nvim](https://github.com/williamboman/mason.nvim)                                  | Tool installer     |
-| [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)              | LSP bridge         |
-| [mason-tool-installer.nvim](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) | Auto-install tools |
-
-### ✏️ Editing
-
-| Plugin                                                                | Description      |
-| --------------------------------------------------------------------- | ---------------- |
-| [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)                       | Auto-completion  |
-| [nvim-snippy](https://github.com/dcampos/nvim-snippy)                 | Snippets         |
-| [nvim-autopairs](https://github.com/windwp/nvim-autopairs)            | Auto-close pairs |
-| [better-escape.nvim](https://github.com/max397574/better-escape.nvim) | Better escape    |
-| [auto-save.nvim](https://github.com/pocco81/auto-save.nvim)           | Auto-save        |
-
-### 🔍 LSP & Tools
-
-| Plugin                                                     | Description       |
-| ---------------------------------------------------------- | ----------------- |
-| [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) | LSP configuration |
-| [conform.nvim](https://github.com/stevearc/conform.nvim)   | Formatting        |
-| [nvim-lint](https://github.com/mfussenegger/nvim-lint)     | Linting           |
-
-### 🎨 UI
-
-| Plugin                                                       | Description   |
-| ------------------------------------------------------------ | ------------- |
-| [rose-pine](https://github.com/rose-pine/neovim)             | Theme         |
-| [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) | Statusline    |
-| [which-key.nvim](https://github.com/folke/which-key.nvim)    | Keymap helper |
-
-### 🚀 Navigation
-
-| Plugin                                                             | Description      |
-| ------------------------------------------------------------------ | ---------------- |
-| [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | Fuzzy finder     |
-| [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)    | File explorer    |
-| [harpoon](https://github.com/ThePrimeagen/harpoon)                 | Quick navigation |
-| [trouble.nvim](https://github.com/folke/trouble.nvim)              | Diagnostics      |
-
-### 📝 Syntax
-
-| Plugin                                                                | Description         |
-| --------------------------------------------------------------------- | ------------------- |
-| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | Syntax highlighting |
-| [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)     | TODO comments       |
-
-### 🛠️ Utilities
-
-| Plugin                                                              | Description       |
-| ------------------------------------------------------------------- | ----------------- |
-| [mini.comment](https://github.com/echasnovski/mini.comment)         | Commenting        |
-| [mini.indentscope](https://github.com/echasnovski/mini.indentscope) | Indent guides     |
-| [mini.surround](https://github.com/echasnovski/mini.surround)       | Surround handling |
+- **Trouble** — diagnostics in a beautiful list
+- **Flash** — lightning fast navigation
+- **Mini suite** — icons, move, comment, indentscope, surround, trailspace, cursorword, hipatterns
+- **Gitsigns** — git decorations in sign column
 
 ---
 
@@ -130,75 +70,132 @@ A modular Neovim configuration powered by [💤 lazy.nvim](https://github.com/fo
 ### Quick start
 
 ```bash
-# Clone the repository
 git clone https://github.com/masaji-ef/modular.nvim.git ~/.config/nvim
-
-# Start Neovim
 nvim
-
-# Lazy will automatically install all plugins
-# Wait for installation to complete
 ```
+
+Lazy will automatically install all plugins. Wait for installation to complete.
 
 ### Installing LSP/Formatting Tools
 
 ```bash
-# In Neovim:
 :Mason
+```
 
-# Or manually install (Fedora):
-sudo dnf install lua-language-server clangd rust-analyzer ruff bash-language-server
+Or manually (Fedora):
 
-# Node.js tools:
+```bash
+sudo dnf install lua-language-server clangd ruff bash-language-server
 npm install -g prettierd
 ```
 
 ---
 
-## 📁 Structure
+## 🔀 Forking & Updates
 
+### Option 1: Use as-is (get updates)
+
+```bash
+git clone https://github.com/masaji-ef/modular.nvim.git ~/.config/nvim
+cd ~/.config/nvim && git pull
 ```
-~/.config/nvim/
-├── init.lua                    # Entry point
-├── lua/
-│   ├── options.lua             # Neovim options
-│   ├── keymaps.lua             # Key mappings
-│   ├── autocmds.lua            # Auto-commands
-│   ├── lazy-bootstrap.lua      # Lazy.nvim bootstrap
-│   ├── lazy-plugins.lua        # Plugin loader
-│   └── modular/
-│       ├── health.lua          # Health check
-│       └── plugins/
-│           ├── cmp/            # Completion plugins
-│           │   └── Nvim-cmp.lua
-│           ├── format/         # Formatting
-│           │   └── Conform.lua
-│           ├── lint/           # Linting
-│           │   └── Lint.lua
-│           ├── lsp/            # LSP
-│           │   └── Lspconfig.lua
-│           ├── syntax/         # Syntax
-│           │   ├── Nvim-treesitter.lua
-│           │   └── Todo-comments.lua
-│           ├── ui/             # UI
-│           │   ├── Lualine.lua
-│           │   ├── Rose-pine.lua
-│           │   └── Which-key.lua
-│           └── util/           # Utilities
-│               ├── Auto-save.lua
-│               ├── Better-escape.lua
-│               ├── Harpoon.lua
-│               ├── Mason.lua
-│               ├── Mini.lua
-│               ├── Neotree.lua
-│               ├── Telescope.lua
-│               └── Trouble.lua
-├── scripts/                    # Utility scripts
-├── .stylua.toml                # StyLua config
-├── pic.svg                     # Logo
-├── LICENSE.md                  # License
-└── README.md                   # This file
+
+### Option 2: Fork and customize (recommended)
+
+1. **Fork** the repository on GitHub
+2. **Clone your fork**:
+
+```bash
+git clone https://github.com/YOUR_USERNAME/modular.nvim.git ~/.config/nvim
 ```
+
+3. **Make changes** — edit files in `lua/modular/plugins/`
+4. **Commit and push**:
+
+```bash
+git add .
+git commit -m "my custom changes"
+git push
+```
+
+### Keep your fork in sync
+
+```bash
+cd ~/.config/nvim
+git remote add upstream https://github.com/masaji-ef/modular.nvim.git
+git fetch upstream
+git merge upstream/main
+```
+
+---
+
+## 📦 Plugins
+
+### Core
+
+| Plugin                                                                                    | Description        |
+| ----------------------------------------------------------------------------------------- | ------------------ |
+| [lazy.nvim](https://github.com/folke/lazy.nvim)                                           | Plugin manager     |
+| [mason.nvim](https://github.com/williamboman/mason.nvim)                                  | Tool installer     |
+| [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)              | LSP bridge         |
+| [mason-tool-installer.nvim](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) | Auto-install tools |
+
+### Editing
+
+| Plugin                                                                | Description      |
+| --------------------------------------------------------------------- | ---------------- |
+| [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)                       | Auto-completion  |
+| [nvim-snippy](https://github.com/dcampos/nvim-snippy)                 | Snippets         |
+| [nvim-autopairs](https://github.com/windwp/nvim-autopairs)            | Auto-close pairs |
+| [better-escape.nvim](https://github.com/max397574/better-escape.nvim) | Better escape    |
+| [auto-save.nvim](https://github.com/pocco81/auto-save.nvim)           | Auto-save        |
+
+### LSP & Tools
+
+| Plugin                                                     | Description       |
+| ---------------------------------------------------------- | ----------------- |
+| [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) | LSP configuration |
+| [conform.nvim](https://github.com/stevearc/conform.nvim)   | Formatting        |
+| [nvim-lint](https://github.com/mfussenegger/nvim-lint)     | Linting           |
+
+### UI
+
+| Plugin                                                       | Description     |
+| ------------------------------------------------------------ | --------------- |
+| [rose-pine](https://github.com/rose-pine/neovim)             | Theme           |
+| [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) | Statusline      |
+| [which-key.nvim](https://github.com/folke/which-key.nvim)    | Keymap helper   |
+| [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)  | Git decorations |
+
+### Navigation
+
+| Plugin                                                             | Description          |
+| ------------------------------------------------------------------ | -------------------- |
+| [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | Fuzzy finder         |
+| [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)    | File explorer        |
+| [harpoon](https://github.com/ThePrimeagen/harpoon)                 | Quick navigation     |
+| [trouble.nvim](https://github.com/folke/trouble.nvim)              | Diagnostics          |
+| [flash.nvim](https://github.com/folke/flash.nvim)                  | Lightning navigation |
+
+### Syntax
+
+| Plugin                                                                | Description         |
+| --------------------------------------------------------------------- | ------------------- |
+| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | Syntax highlighting |
+| [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)     | TODO comments       |
+
+### Utilities (mini.nvim)
+
+| Plugin                                                              | Description          |
+| ------------------------------------------------------------------- | -------------------- |
+| [mini.icons](https://github.com/echasnovski/mini.icons)             | Icons everywhere     |
+| [mini.move](https://github.com/echasnovski/mini.move)               | Move selections      |
+| [mini.comment](https://github.com/echasnovski/mini.comment)         | Commenting           |
+| [mini.indentscope](https://github.com/echasnovski/mini.indentscope) | Indent guides        |
+| [mini.surround](https://github.com/echasnovski/mini.surround)       | Surround handling    |
+| [mini.trailspace](https://github.com/echasnovski/mini.trailspace)   | Trailing whitespace  |
+| [mini.cursorword](https://github.com/echasnovski/mini.cursorword)   | Word under cursor    |
+| [mini.hipatterns](https://github.com/echasnovski/mini.hipatterns)   | Pattern highlighting |
 
 ---
 
@@ -214,6 +211,16 @@ npm install -g prettierd
 | `<leader>q`     | Close buffer         |
 | `<C-d>`/`<C-u>` | Scroll and center    |
 | `n`/`N`         | Search and center    |
+
+### Flash (navigation)
+
+| Key     | Action                |
+| ------- | --------------------- |
+| `s`     | Jump to any position  |
+| `S`     | Treesitter navigation |
+| `r`     | Remote operation      |
+| `R`     | Treesitter search     |
+| `<C-s>` | Toggle flash search   |
 
 ### Telescope
 
@@ -238,6 +245,25 @@ npm install -g prettierd
 | `<leader>lr` | Rename            |
 | `<leader>ld` | Diagnostics float |
 
+### Mini
+
+| Key           | Action                            |
+| ------------- | --------------------------------- |
+| `gc`          | Comment                           |
+| `gcc`         | Comment line                      |
+| `sa`          | Add surround                      |
+| `sd`          | Delete surround                   |
+| `sf`          | Find surround                     |
+| `sF`          | Find left surround                |
+| `sh`          | Highlight surround                |
+| `sr`          | Replace surround                  |
+| `ii`          | Select indent scope               |
+| `ai`          | Select indent scope with border   |
+| `[i`          | Goto indent top                   |
+| `]i`          | Goto indent bottom                |
+| `<A-h/j/k/l>` | Move selection/line               |
+| `<A-H/J/K/L>` | Move selection/line (alternative) |
+
 ### Harpoon
 
 | Key          | Action     |
@@ -252,48 +278,23 @@ npm install -g prettierd
 | ------------ | ------------------ |
 | `<leader>td` | Toggle diagnostics |
 | `<leader>ts` | Toggle symbols     |
+| `<leader>tl` | LSP references     |
+| `<leader>tL` | Location list      |
+| `<leader>tQ` | Quickfix list      |
 
 ---
 
 ## 🎨 Supported Languages
 
-| Language          | LSP           | Formatter    | Linter     |
-| ----------------- | ------------- | ------------ | ---------- |
-| **Lua**           | lua_ls        | stylua       | luacheck   |
-| **Python**        | ruff          | ruff         | ruff       |
-| **Bash/Zsh**      | bashls        | shfmt        | shellcheck |
-| **C/C++**         | clangd        | clang-format | -          |
-| **JavaScript/TS** | -             | prettierd    | -          |
-| **JSON/HTML/CSS** | -             | prettierd    | -          |
-| **Markdown**      | -             | prettierd    | -          |
-| **Rust**          | rust-analyzer | rustfmt      | -          |
-
----
-
-## 🔧 Configuration
-
-### Customizing plugins
-
-Each plugin has its own file in `lua/modular/plugins/<category>/`. To modify a plugin, edit the corresponding file.
-
-### Adding new plugins
-
-1. Create a new `.lua` file in the appropriate category folder
-2. Follow the pattern of existing plugin files
-3. The plugin will be automatically loaded by `lazy-plugins.lua`
-
-Example:
-
-```lua
--- lua/modular/plugins/ui/My-plugin.lua
-return {
-  'author/my-plugin',
-  opts = { ... },
-  config = function()
-    -- setup
-  end,
-}
-```
+| Language          | LSP    | Formatter    | Linter     |
+| ----------------- | ------ | ------------ | ---------- |
+| **Lua**           | lua_ls | stylua       | luacheck   |
+| **Python**        | ruff   | ruff         | ruff       |
+| **Bash/Zsh**      | bashls | shfmt        | shellcheck |
+| **C/C++**         | clangd | clang-format | -          |
+| **JavaScript/TS** | -      | prettierd    | -          |
+| **JSON/HTML/CSS** | -      | prettierd    | -          |
+| **Markdown**      | -      | prettierd    | -          |
 
 ---
 
@@ -309,11 +310,7 @@ return {
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-
-Based on [Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim).
-
----
+MIT License. Based on [Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim).
 
 <div align="center">
 
@@ -323,3 +320,14 @@ Based on [Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim).
 [![GitHub forks](https://img.shields.io/github/forks/masaji-ef/modular.nvim?style=for-the-badge&logo=github)](https://github.com/masaji-ef/modular.nvim/network/members)
 
 </div>
+EOF
+```
+
+---
+
+## ✅ Проверка
+
+```bash
+cd ~/.config/nvim
+cat README.md | head -30
+```

@@ -35,28 +35,6 @@ return {
         }
       end,
     },
-    -- {
-    --     'windwp/nvim-ts-autotag',
-    --     config = function()
-    --         require('nvim-ts-autotag').setup {
-    --             enable_close_on_slash = false,
-    --             filetypes = {
-    --                 'html',
-    --                 'xml',
-    --                 'javascript',
-    --                 'typescript',
-    --                 'javascriptreact',
-    --                 'typescriptreact',
-    --                 'svelte',
-    --                 'vue',
-    --                 'tsx',
-    --                 'jsx',
-    --                 'rescript',
-    --                 'php',
-    --             },
-    --         }
-    --     end,
-    -- },
   },
 
   config = function()

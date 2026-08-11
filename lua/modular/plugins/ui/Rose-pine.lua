@@ -15,7 +15,7 @@ return {
       styles = {
         bold = true,
         italic = true,
-        transparency = true,
+        transparency = false,
       },
       groups = {
         border = 'muted',
@@ -47,18 +47,18 @@ return {
       palette = {
         moon = {
           palette = {
-            base = '#191724',
-            surface = '#1f1d2e',
+            base = '#0a0a0f',
+            surface = '#1a1a2e',
             overlay = '#26233a',
             muted = '#6e6a86',
             subtle = '#908caa',
-            text = '#e0def4',
-            love = '#ff4c4c',
-            gold = '#f6c177',
+            text = '#ffffff',
+            love = '#ff6b6b',
+            gold = '#ffd43b',
             rose = '#ffb3b3',
-            pine = '#4caf50',
-            foam = '#9ccfd8',
-            iris = '#c4a7e7',
+            pine = '#69db7c',
+            foam = '#74c0fc',
+            iris = '#d4b8ff',
             highlight_low = '#21202e',
             highlight_med = '#403d52',
             highlight_high = '#524f67',
@@ -66,20 +66,36 @@ return {
         },
       },
       highlight_groups = {
-        -- Comment = { fg = "foam" },
-        -- VertSplit = { fg = "muted", bg = "muted" },
+        CursorLine = { bg = '#1a1a2e' },
+        Visual = { bg = '#26233a' },
+        Search = { bg = '#d4b8ff', fg = '#0a0a0f' },
+        IncSearch = { bg = '#ffd43b', fg = '#0a0a0f' },
+        StatusLine = { bg = '#1a1a2e', fg = '#ffffff' },
+        StatusLineNC = { bg = '#0a0a0f', fg = '#6e6a86' },
+        TabLine = { bg = '#0a0a0f', fg = '#6e6a86' },
+        TabLineSel = { bg = '#1a1a2e', fg = '#ffffff' },
+        TabLineFill = { bg = '#0a0a0f' },
+        Normal = { bg = '#0a0a0f', fg = '#ffffff' },
+        NormalNC = { bg = '#0a0a0f', fg = '#6e6a86' },
+        Comment = { fg = '#6e6a86', italic = true },
+        Constant = { fg = '#74c0fc' },
+        String = { fg = '#69db7c' },
+        Character = { fg = '#69db7c' },
+        Number = { fg = '#ffd43b' },
+        Boolean = { fg = '#ffd43b' },
+        Float = { fg = '#ffd43b' },
+        Function = { fg = '#d4b8ff' },
+        Identifier = { fg = '#74c0fc' },
+        Keyword = { fg = '#ff6b6b' },
+        Statement = { fg = '#ff6b6b' },
+        Operator = { fg = '#d4b8ff' },
+        PreProc = { fg = '#ffb3b3' },
+        Type = { fg = '#69db7c' },
+        Special = { fg = '#d4b8ff' },
+        Underlined = { fg = '#74c0fc', underline = true },
+        Error = { fg = '#ff6b6b', bg = '#0a0a0f' },
+        Todo = { fg = '#ffd43b', bg = '#0a0a0f' },
       },
-      --before_highlight = function(group, highlight, palette)
-      -- Disable all undercurls
-      -- if highlight.undercurl then
-      --     highlight.undercurl = false
-      -- end
-      --
-      -- Change palette colour
-      -- if highlight.fg == palette.pine then
-      --     highlight.fg = palette.foam
-      -- end
-      --end,
     }
 
     vim.cmd 'colorscheme rose-pine'
