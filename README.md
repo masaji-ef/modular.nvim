@@ -6,7 +6,7 @@
 
 **Modular Neovim configuration for daily development**
 
-[![Neovim](https://img.shields.io/badge/Neovim-0.9.0+-57A143?style=for-the-badge&logo=neovim&logoColor=white)](https://neovim.io/)
+[![Neovim](https://img.shields.io/badge/Neovim-0.11.0+-57A143?style=for-the-badge&logo=neovim&logoColor=white)](https://neovim.io/)
 [![Lazy.nvim](https://img.shields.io/badge/Lazy.nvim-11.17.5-4EAA25?style=for-the-badge&logo=lua&logoColor=white)](https://github.com/folke/lazy.nvim)
 [![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://www.linux.org/)
 [![macOS](https://img.shields.io/badge/macOS-000000?style=for-the-badge&logo=apple&logoColor=white)](https://www.apple.com/macos/)
@@ -46,7 +46,7 @@ A modular Neovim configuration powered by [💤 lazy.nvim](https://github.com/fo
 - **Linting** — nvim-lint with luacheck, shellcheck
 - **File explorer** — neo-tree with Git status
 - **Fuzzy finder** — telescope.nvim with fzf
-- **Modern UI** — rose-pine theme, lualine, which-key
+- **Modern UI** — tokyonight theme, lualine, which-key
 - **Auto-save** — automatic file saving
 - **Harpoon** — quick file navigation
 - **Trouble** — diagnostics in a beautiful list
@@ -60,7 +60,7 @@ A modular Neovim configuration powered by [💤 lazy.nvim](https://github.com/fo
 
 ### Requirements
 
-- Neovim >= **0.9.0**
+- Neovim >= **0.11.0** (required for latest nvim-treesitter)
 - Git >= **2.19.0**
 - [Nerd Font](https://www.nerdfonts.com/) (optional, for icons)
 - C compiler (gcc, make, unzip)
@@ -75,6 +75,8 @@ nvim
 ```
 
 Lazy will automatically install all plugins. Wait for installation to complete.
+
+tree-sitter CLI will be auto-installed on first run.
 
 ### Installing LSP/Formatting Tools
 
@@ -162,7 +164,7 @@ git merge upstream/main
 
 | Plugin                                                       | Description     |
 | ------------------------------------------------------------ | --------------- |
-| [rose-pine](https://github.com/rose-pine/neovim)             | Theme           |
+| [tokyonight.nvim](https://github.com/folke/tokyonight.nvim)  | Theme           |
 | [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) | Statusline      |
 | [which-key.nvim](https://github.com/folke/which-key.nvim)    | Keymap helper   |
 | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)  | Git decorations |
@@ -245,32 +247,14 @@ git merge upstream/main
 | `<leader>lr` | Rename            |
 | `<leader>ld` | Diagnostics float |
 
-### Mini
-
-| Key           | Action                            |
-| ------------- | --------------------------------- |
-| `gc`          | Comment                           |
-| `gcc`         | Comment line                      |
-| `sa`          | Add surround                      |
-| `sd`          | Delete surround                   |
-| `sf`          | Find surround                     |
-| `sF`          | Find left surround                |
-| `sh`          | Highlight surround                |
-| `sr`          | Replace surround                  |
-| `ii`          | Select indent scope               |
-| `ai`          | Select indent scope with border   |
-| `[i`          | Goto indent top                   |
-| `]i`          | Goto indent bottom                |
-| `<A-h/j/k/l>` | Move selection/line               |
-| `<A-H/J/K/L>` | Move selection/line (alternative) |
-
 ### Harpoon
 
-| Key          | Action     |
-| ------------ | ---------- |
-| `<leader>ha` | Add file   |
-| `<leader>j`  | List files |
-| `<leader>hc` | Clear list |
+| Key           | Action              |
+| ------------- | ------------------- |
+| `<leader>ha`  | Add file            |
+| `<leader>j`   | List files          |
+| `<leader>hc`  | Clear list          |
+| `<leader>1-4` | Open file by number |
 
 ### Trouble
 
@@ -320,4 +304,3 @@ MIT License. Based on [Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvi
 [![GitHub forks](https://img.shields.io/github/forks/masaji-ef/modular.nvim?style=for-the-badge&logo=github)](https://github.com/masaji-ef/modular.nvim/network/members)
 
 </div>
-

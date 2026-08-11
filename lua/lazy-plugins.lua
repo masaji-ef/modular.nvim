@@ -45,4 +45,34 @@ require('lazy').setup(load_plugins(), {
       lazy = '💤 ',
     },
   },
+  checker = {
+    enabled = true,
+    frequency = 86400,
+    auto_install = true,
+  },
+  change_detection = {
+    enabled = true,
+    notify = false,
+  },
+  install = {
+    colorscheme = { 'tokyonight' },
+  },
+  performance = {
+    cache = {
+      enabled = true,
+      path = vim.fn.stdpath 'cache' .. '/lazy/cache',
+    },
+    rtp = {
+      disabled_plugins = {
+        'gzip',
+        'matchit',
+        'matchparen',
+        'netrwPlugin',
+        'tarPlugin',
+        'tohtml',
+        'tutor',
+        'zipPlugin',
+      },
+    },
+  },
 })

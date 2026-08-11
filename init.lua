@@ -1,3 +1,8 @@
+if vim.fn.has('nvim-0.11.0') == 0 then
+  vim.api.nvim_err_writeln('modular.nvim requires Neovim >= 0.11.0')
+  return
+end
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -12,4 +17,3 @@ require 'options'
 require 'keymaps'
 require 'autocmds'
 require 'lazy-bootstrap'
-require 'lazy-plugins'

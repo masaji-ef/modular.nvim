@@ -4,7 +4,6 @@ return {
     event = { 'BufRead', 'BufWritePost', 'TextChanged' },
     config = function()
       local lint = require 'lint'
-
       local function configure_linter(name, config)
         lint.linters[name] = lint.linters[name] or {}
         for key, value in pairs(config) do
@@ -14,23 +13,13 @@ return {
 
       configure_linter('luacheck', {
         cmd = 'luacheck',
-        args = {
-          '--codes',
-          '--ranges',
-          '--globals',
-          'vim',
-          'setup',
-          '-',
-        },
+        args = { '--codes', '--ranges', '--globals', 'vim', 'setup', '-' },
         stdin = true,
       })
 
       configure_linter('shellcheck', {
         cmd = 'shellcheck',
-        args = {
-          '--format=json',
-          '$FILENAME',
-        },
+        args = { '--format=json', '$FILENAME' },
         stdin = false,
         stream = 'stdout',
         ignore_exitcode = true,

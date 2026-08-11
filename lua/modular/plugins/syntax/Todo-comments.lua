@@ -1,15 +1,11 @@
 return {
   {
     'folke/todo-comments.nvim',
+    event = 'VeryLazy',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = {
-      signs = false,
+    opts = { signs = false },
+    keys = {
+      { '<leader>st', '<cmd>TodoTelescope<CR>', desc = 'Telescope: ToDo Comments', mode = 'n' },
     },
-
-    vim.keymap.set('n', '<leader>st', '<cmd>TodoTelescope<CR>', {
-      noremap = true,
-      silent = true,
-      desc = 'Telescope: ToDo Comments',
-    }),
   },
 }

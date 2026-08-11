@@ -1,66 +1,42 @@
 return {
   'nvim-lualine/lualine.nvim',
+  lazy = false,
   dependencies = {},
   config = function()
     local mode = {
       'mode',
-      fmt = function(str)
-        return ' ' .. str
-      end,
+      fmt = function(str) return ' ' .. str end,
     }
-
-    local filename = {
-      'filename',
-      file_status = false,
-      path = 1,
-    }
-
-    local hide_in_width = function()
-      return vim.fn.winwidth(0) > 100
-    end
-
+    local filename = { 'filename', file_status = false, path = 1 }
+    local hide_in_width = function() return vim.fn.winwidth(0) > 100 end
     local diagnostics = {
       'diagnostics',
       sources = { 'nvim_diagnostic' },
       sections = { 'error', 'warn' },
-      symbols = {
-        error = ' ',
-        warn = ' ',
-        info = ' ',
-        hint = ' ',
-      },
+      symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
       colored = true,
       update_in_insert = false,
       always_visible = false,
       cond = hide_in_width,
     }
-
     local diff = {
       'diff',
       colored = true,
-      symbols = {
-        added = ' ',
-        modified = ' ',
-        removed = ' ',
-      },
+      symbols = { added = ' ', modified = ' ', removed = ' ' },
       cond = hide_in_width,
     }
 
     require('lualine').setup {
       options = {
         icons_enabled = true,
-        theme = 'rose-pine',
+        theme = 'tokyonight',
         section_separators = '',
         component_separators = '',
         disabled_filetypes = {},
         ignore_focus = {},
         always_divide_middle = true,
         globalstatus = false,
-        refresh = {
-          statusline = 50,
-          tabline = 50,
-          winbar = 50,
-        },
+        refresh = { statusline = 50, tabline = 50, winbar = 50 },
       },
       sections = {
         lualine_a = { mode },

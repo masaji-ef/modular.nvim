@@ -1,11 +1,11 @@
 return {
   'hrsh7th/nvim-cmp',
+  event = 'InsertEnter',
   dependencies = {
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-nvim-lua',
-
     {
       'dcampos/nvim-snippy',
       config = function()
@@ -20,7 +20,6 @@ return {
       end,
     },
     'dcampos/cmp-snippy',
-
     {
       'windwp/nvim-autopairs',
       event = 'InsertEnter',
@@ -36,7 +35,6 @@ return {
       end,
     },
   },
-
   config = function()
     local cmp = require 'cmp'
     local snippy = require 'snippy'
@@ -73,21 +71,12 @@ return {
         completeopt = 'menu,menuone,noinsert',
         keyword_length = 1,
       },
-
       mapping = cmp.mapping.preset.insert {
-        ['<C-j>'] = cmp.mapping.select_next_item {
-          behavior = cmp.SelectBehavior.Select,
-        },
-        ['<C-k>'] = cmp.mapping.select_prev_item {
-          behavior = cmp.SelectBehavior.Select,
-        },
-        ['<CR>'] = cmp.mapping.confirm {
-          select = true,
-          behavior = cmp.ConfirmBehavior.Replace,
-        },
+        ['<C-j>'] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
+        ['<C-k>'] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
+        ['<CR>'] = cmp.mapping.confirm { select = true, behavior = cmp.ConfirmBehavior.Replace },
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
-
         ['<Tab>'] = cmp.mapping(function(fallback)
           if snippy.can_expand_or_advance() then
             snippy.expand_or_advance()
@@ -97,7 +86,6 @@ return {
             fallback()
           end
         end, { 'i', 's' }),
-
         ['<S-Tab>'] = cmp.mapping(function(fallback)
           if snippy.can_jump(-1) then
             snippy.previous()
@@ -108,13 +96,11 @@ return {
           end
         end, { 'i', 's' }),
       },
-
       snippet = {
         expand = function(args)
           require('snippy').expand_snippet(args.body)
         end,
       },
-
       sources = cmp.config.sources {
         { name = 'nvim_lsp', priority = 1000 },
         { name = 'snippy', priority = 750 },
@@ -130,12 +116,10 @@ return {
           },
         },
       },
-
       formatting = {
         fields = { 'kind', 'abbr', 'menu' },
         format = function(entry, item)
-          item.kind =
-            string.format('%s %s', kind_icons[item.kind] or '?', item.kind)
+          item.kind = string.format('%s %s', kind_icons[item.kind] or '?', item.kind)
           item.menu = ({
             nvim_lsp = '[LSP]',
             snippy = '[SNP]',
@@ -143,17 +127,12 @@ return {
             path = '[PATH]',
             nvim_lua = '[LUA]',
           })[entry.source.name] or string.upper(entry.source.name)
-
           return item
         end,
       },
-
       experimental = {
-        ghost_text = {
-          hl_group = 'Comment',
-        },
+        ghost_text = { hl_group = 'Comment' },
       },
-
       window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
