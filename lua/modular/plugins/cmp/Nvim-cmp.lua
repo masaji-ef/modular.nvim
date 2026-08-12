@@ -72,9 +72,16 @@ return {
         keyword_length = 1,
       },
       mapping = cmp.mapping.preset.insert {
-        ['<C-j>'] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
-        ['<C-k>'] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
-        ['<CR>'] = cmp.mapping.confirm { select = true, behavior = cmp.ConfirmBehavior.Replace },
+        ['<C-j>'] = cmp.mapping.select_next_item {
+          behavior = cmp.SelectBehavior.Select,
+        },
+        ['<C-k>'] = cmp.mapping.select_prev_item {
+          behavior = cmp.SelectBehavior.Select,
+        },
+        ['<CR>'] = cmp.mapping.confirm {
+          select = true,
+          behavior = cmp.ConfirmBehavior.Replace,
+        },
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
         ['<Tab>'] = cmp.mapping(function(fallback)
@@ -119,7 +126,8 @@ return {
       formatting = {
         fields = { 'kind', 'abbr', 'menu' },
         format = function(entry, item)
-          item.kind = string.format('%s %s', kind_icons[item.kind] or '?', item.kind)
+          item.kind =
+            string.format('%s %s', kind_icons[item.kind] or '?', item.kind)
           item.menu = ({
             nvim_lsp = '[LSP]',
             snippy = '[SNP]',

@@ -5,7 +5,12 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = { signs = false },
     keys = {
-      { '<leader>st', '<cmd>TodoTelescope<CR>', desc = 'Telescope: ToDo Comments', mode = 'n' },
+      {
+        '<leader>st',
+        '<cmd>TodoTelescope<CR>',
+        desc = 'Telescope: ToDo Comments',
+        mode = 'n',
+      },
     },
   },
 }

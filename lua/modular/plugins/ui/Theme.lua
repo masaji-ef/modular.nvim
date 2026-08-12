@@ -5,7 +5,12 @@ return {
   opts = {
     style = 'night',
     transparent = false,
-    styles = { comments = { italic = true }, keywords = { bold = true }, functions = { bold = true }, variables = {} },
+    styles = {
+      comments = { italic = true },
+      keywords = { bold = true },
+      functions = { bold = true },
+      variables = {},
+    },
     on_colors = function(colors)
       colors.bg = '#000000'
       colors.bg_dark = '#0a0a0f'
