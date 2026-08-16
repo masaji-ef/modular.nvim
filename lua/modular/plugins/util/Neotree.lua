@@ -146,7 +146,7 @@ return {
         popup = {
           size = {
             height = '80%',
-            width = '60%',
+            width = '40%',
           },
         },
         mapping_options = {
