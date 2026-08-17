@@ -23,3 +23,10 @@ vim.api.nvim_create_autocmd('FileType', {
     end
   end,
 })
+
+-- vim.api.nvim_create_autocmd('BufWritePre', {
+--   pattern = { '*.lua', '*.py', '*.js', '*.ts', '*.json', '*.md' },
+--   callback = function()
+--     vim.lsp.buf.format { async = false }
+--   end,
+-- })

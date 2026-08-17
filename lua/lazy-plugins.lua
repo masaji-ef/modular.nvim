@@ -1,30 +1,26 @@
 local function load_plugins()
   local plugins = {}
-  local categories = { 'util', 'ui', 'syntax', 'lsp', 'cmp', 'lint', 'format' }
+  local config_path = vim.fn.stdpath 'config' .. '/lua/modular/plugins'
 
-  for _, category in ipairs(categories) do
-    local plugins_dir = vim.fn.stdpath 'config'
-      .. '/lua/modular/plugins/'
-      .. category
-    local ok, files = pcall(vim.fn.readdir, plugins_dir)
-    if not ok then
+  local files = vim.fn.glob(config_path .. '/**/*.lua', true, true)
+
+  for _, file in ipairs(files) do
+    local module = file:match('lua/(.+)%.lua$'):gsub('/', '.')
+
+    if module:match 'health$' then
       goto continue
     end
 
-    for _, file in ipairs(files) do
-      if file:sub(-4) == '.lua' then
-        local plugin_name = file:sub(1, -5)
-        local plugin_path = 'modular/plugins/' .. category .. '/' .. plugin_name
-        local fine, plugin = pcall(require, plugin_path)
-        if fine then
-          table.insert(plugins, plugin)
-        end
-      end
+    local ok, plugin = pcall(require, module)
+    if ok and type(plugin) == 'table' and (plugin[1] or plugin.name) then
+      table.insert(plugins, plugin)
     end
+
     ::continue::
   end
 
   return plugins
+
 end
 
 require('lazy').setup(load_plugins(), {
@@ -46,9 +42,9 @@ require('lazy').setup(load_plugins(), {
     },
   },
   checker = {
-    enabled = true,
+    enabled = false,
     frequency = 86400,
-    auto_install = true,
+    auto_install = false,
   },
   change_detection = {
     enabled = true,

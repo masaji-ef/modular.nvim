@@ -1,10 +1,21 @@
----@diagnostic disable: missing-fields
 return {
   {
     'echasnovski/mini.icons',
     version = '*',
     config = function()
-      require('mini.icons').setup()
+      require('mini.icons').setup {
+        style = 'glyph',
+        default = {},
+        directory = {},
+        extension = {},
+        file = {},
+        filetype = {},
+        lsp = {},
+        os = {},
+        use_file_extension = function(ext, file)
+          return true
+        end,
+      }
     end,
   },
   {
@@ -13,25 +24,20 @@ return {
     config = function()
       require('mini.move').setup {
         mappings = {
-          left = '<A-h>',
-          right = '<A-l>',
-          down = '<A-j>',
-          up = '<A-k>',
-          line_left = '<A-h>',
-          line_right = '<A-l>',
-          line_down = '<A-j>',
-          line_up = '<A-k>',
+          left = '<S-h>',
+          right = '<S-l>',
+          down = '<S-j>',
+          up = '<S-k>',
+          line_left = '<S-h>',
+          line_right = '<S-l>',
+          line_down = '<S-j>',
+          line_up = '<S-k>',
         },
         options = {
           reindent_linewise = true,
         },
       }
     end,
-  },
-  {
-    'echasnovski/mini.comment',
-    version = '*',
-    config = function() end,
   },
   {
     'echasnovski/mini.indentscope',
@@ -41,6 +47,10 @@ return {
         draw = {
           delay = 50,
           animation = require('mini.indentscope').gen_animation.none(),
+          predicate = function(scope)
+            return not scope.body.is_incomplete
+          end,
+          priority = 2,
         },
         mappings = {
           object_scope = 'ii',
@@ -51,6 +61,7 @@ return {
         options = {
           border = 'both',
           indent_at_cursor = true,
+          n_lines = 10000,
           try_as_border = false,
         },
         symbol = '╎',
@@ -62,15 +73,15 @@ return {
     version = '*',
     config = function()
       require('mini.surround').setup {
-        custom_surroundings = nil,
+        custom_surroundings = {},
         highlight_duration = 500,
         mappings = {
-          add = 'sa',
-          delete = 'sd',
-          find = 'sf',
-          find_left = 'sF',
-          highlight = 'sh',
-          replace = 'sr',
+          add = 'ga',
+          delete = 'gd',
+          find = 'gf',
+          find_left = 'gF',
+          highlight = 'gh',
+          replace = 'gr',
           suffix_last = 'l',
           suffix_next = 'n',
         },
@@ -103,8 +114,7 @@ return {
     'echasnovski/mini.hipatterns',
     version = '*',
     config = function()
-      local hipatterns = require 'mini.hipatterns'
-      hipatterns.setup {
+      require('mini.hipatterns').setup {
         highlighters = {
           fixme = {
             pattern = '%f[%w]()FIXME()%f[%W]',
@@ -122,7 +132,7 @@ return {
             pattern = '%f[%w]()NOTE()%f[%W]',
             group = 'MiniHipatternsNote',
           },
-          hex_color = hipatterns.gen_highlighter.hex_color(),
+          hex_color = require('mini.hipatterns').gen_highlighter.hex_color(),
         },
         delay = {
           text_change = 200,

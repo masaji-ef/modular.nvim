@@ -45,6 +45,8 @@ return {
         'clang-format',
         'luacheck',
         'shellcheck',
+        'yamlfmt',
+        'taplo',
       },
       run_on_start = true,
     },

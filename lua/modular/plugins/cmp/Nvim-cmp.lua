@@ -12,7 +12,6 @@ return {
         require('snippy').setup {
           mappings = {
             is = {
-              ['<Tab>'] = 'expand_or_advance',
               ['<S-Tab>'] = 'previous',
             },
           },
@@ -38,6 +37,7 @@ return {
   config = function()
     local cmp = require 'cmp'
     local snippy = require 'snippy'
+
     local kind_icons = {
       Text = '',
       Method = '',
@@ -70,6 +70,18 @@ return {
       completion = {
         completeopt = 'menu,menuone,noinsert',
         keyword_length = 1,
+      },
+      sorting = {
+        comparators = {
+          cmp.config.compare.offset,
+          cmp.config.compare.exact,
+          cmp.config.compare.score,
+          cmp.config.compare.recently_used,
+          cmp.config.compare.kind,
+          cmp.config.compare.sort_text,
+          cmp.config.compare.length,
+          cmp.config.compare.order,
+        },
       },
       mapping = cmp.mapping.preset.insert {
         ['<C-j>'] = cmp.mapping.select_next_item {

@@ -50,8 +50,23 @@ vim.opt.completeopt = 'menuone,noselect'
 vim.opt.pumheight = 10
 vim.opt.formatoptions:remove { 'c', 'r', 'o', 'a', 't' }
 
-vim.opt.swapfile = false
+vim.opt.showcmd = true
+vim.opt.laststatus = 3
+vim.opt.cmdheight = 1
+vim.opt.pumblend = 10
+vim.opt.winblend = 10
+vim.opt.ttimeoutlen = 50
+
+vim.opt.swapfile = true
 vim.opt.backup = false
 vim.opt.writebackup = false
+
+local cache_dir = os.getenv 'HOME' .. '/.cache/nvim'
+vim.fn.mkdir(cache_dir, 'p')
+vim.fn.mkdir(cache_dir .. '/swap', 'p')
+vim.fn.mkdir(cache_dir .. '/undo', 'p')
+
+vim.opt.directory = cache_dir .. '/swap//'
+vim.opt.undodir = cache_dir .. '/undo//'
 
 vim.opt.runtimepath:remove '/usr/share/vim/vimfiles'

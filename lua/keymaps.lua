@@ -138,3 +138,32 @@ vim.keymap.set('n', '<leader>r', function()
     end
   )
 end, { desc = 'Smart replace' })
+
+-- FIXME: temp solution
+vim.keymap.set('n', 's', '<nop>', { noremap = true, silent = true })
+vim.keymap.set('n', 'S', '<nop>', { noremap = true, silent = true })
+vim.keymap.set('n', 'r', '<nop>', { noremap = true, silent = true })
+vim.keymap.set('n', 'R', '<nop>', { noremap = true, silent = true })
+
+vim.keymap.set('x', 's', '<nop>', { noremap = true, silent = true })
+vim.keymap.set('x', 'S', '<nop>', { noremap = true, silent = true })
+vim.keymap.set('x', 'r', '<nop>', { noremap = true, silent = true })
+vim.keymap.set('x', 'R', '<nop>', { noremap = true, silent = true })
+
+vim.keymap.set('o', 's', '<nop>', { noremap = true, silent = true })
+vim.keymap.set('o', 'S', '<nop>', { noremap = true, silent = true })
+vim.keymap.set('o', 'r', '<nop>', { noremap = true, silent = true })
+vim.keymap.set('o', 'R', '<nop>', { noremap = true, silent = true })
+
+vim.keymap.set('n', 'gf', '<nop>', { noremap = true, silent = true })
+vim.keymap.set('n', 'gF', '<nop>', { noremap = true, silent = true })
+vim.keymap.set('x', 'gf', '<nop>', { noremap = true, silent = true })
+vim.keymap.set('x', 'gF', '<nop>', { noremap = true, silent = true })
+
+-- FIXME: mini.move
+vim.keymap.set(
+  'n',
+  '<leader>lk',
+  vim.lsp.buf.hover,
+  { desc = 'LSP: Hover Documentation' }
+)

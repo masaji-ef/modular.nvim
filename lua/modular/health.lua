@@ -1,54 +1,98 @@
-local check_version = function()
-  local verstr = tostring(vim.version())
-  if not vim.version.ge then
-    vim.health.error(
-      string.format(
-        "Neovim out of date: '%s'. Upgrade to latest stable or nightly",
-        verstr
-      )
-    )
-    return
-  end
+-- /lua/modular/health.lua
+local M = {}
 
-  if vim.version.ge(vim.version(), '0.10-dev') then
-    vim.health.ok(string.format("Neovim version is: '%s'", verstr))
-  else
-    vim.health.error(
-      string.format(
-        "Neovim out of date: '%s'. Upgrade to latest stable or nightly",
-        verstr
-      )
+local function check_neovim_version()
+  local ver = vim.version()
+  if ver.major >= 0 and ver.minor >= 11 then
+    vim.health.ok(
+      string.format('Neovim %d.%d.%d', ver.major, ver.minor, ver.patch)
     )
+  else
+    vim.health.error 'Neovim >= 0.11.0 required'
   end
 end
 
-local check_external_reqs = function()
-  for _, exe in ipairs { 'git', 'make', 'unzip', 'rg' } do
-    local is_executable = vim.fn.executable(exe) == 1
-    if is_executable then
-      vim.health.ok(string.format("Found executable: '%s'", exe))
+local function check_executables()
+  local tools = {
+    git = 'Version control',
+    make = 'Build tool',
+    unzip = 'Archive tool',
+    rg = 'Ripgrep (search)',
+    fd = 'Find (fast search)',
+    stylua = 'Lua formatter',
+    ruff = 'Python formatter/linter',
+    shfmt = 'Shell formatter',
+    prettierd = 'JS/TS formatter',
+    ['clang-format'] = 'C/C++ formatter',
+  }
+
+  for exe, desc in pairs(tools) do
+    if vim.fn.executable(exe) == 1 then
+      vim.health.ok(string.format('%s: %s', desc, exe))
     else
-      vim.health.warn(string.format("Could not find executable: '%s'", exe))
+      vim.health.warn(string.format('%s not found: %s', desc, exe))
     end
   end
-
-  return true
 end
 
-return {
-  check = function()
-    vim.health.start 'kickstart.nvim'
+local function check_lsp_servers()
+  local servers = { 'lua_ls', 'clangd', 'ruff', 'bashls' }
+  local mason_path = vim.fn.stdpath 'data' .. '/mason/bin/'
 
-    vim.health.info [[NOTE: Not every warning is a 'must-fix' in `:checkhealth`
+  for _, server in ipairs(servers) do
+    local path = mason_path .. server
+    if vim.fn.filereadable(path) == 1 or vim.fn.executable(server) == 1 then
+      vim.health.ok(string.format('LSP server: %s', server))
+    else
+      vim.health.warn(string.format('LSP server missing: %s', server))
+    end
+  end
+end
 
-  Fix only warnings for plugins and languages you intend to use.
-    Mason will give warnings for languages that are not installed.
-    You do not need to install, unless you want to use those languages!]]
+local function check_paths()
+  local cache = os.getenv 'HOME' .. '/.cache/nvim'
+  local swap = cache .. '/swap'
+  local undo = cache .. '/undo'
 
-    local uv = vim.uv or vim.loop
-    vim.health.info('System Information: ' .. vim.inspect(uv.os_uname()))
+  if vim.fn.isdirectory(swap) == 1 then
+    vim.health.ok('Swap directory: ' .. swap)
+  else
+    vim.health.warn('Swap directory missing: ' .. swap)
+  end
 
-    check_version()
-    check_external_reqs()
-  end,
-}
+  if vim.fn.isdirectory(undo) == 1 then
+    vim.health.ok('Undo directory: ' .. undo)
+  else
+    vim.health.warn('Undo directory missing: ' .. undo)
+  end
+end
+
+function M.check()
+  vim.health.start '⚡ Custom Neovim Config'
+
+  vim.health.info ''
+  vim.health.info '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'
+  vim.health.info 'NEOVIM'
+  vim.health.info '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'
+  check_neovim_version()
+
+  vim.health.info ''
+  vim.health.info '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'
+  vim.health.info 'PATHS'
+  vim.health.info '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'
+  check_paths()
+
+  vim.health.info ''
+  vim.health.info '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'
+  vim.health.info 'EXECUTABLES'
+  vim.health.info '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'
+  check_executables()
+
+  vim.health.info ''
+  vim.health.info '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'
+  vim.health.info 'LSP SERVERS'
+  vim.health.info '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'
+  check_lsp_servers()
+end
+
+return M
