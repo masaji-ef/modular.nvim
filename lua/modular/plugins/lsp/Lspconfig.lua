@@ -1,6 +1,6 @@
 return {
   'neovim/nvim-lspconfig',
-  event = 'VeryLazy',
+  event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
     'williamboman/mason-lspconfig.nvim',
     'hrsh7th/cmp-nvim-lsp',
@@ -21,9 +21,6 @@ return {
     end
 
     local on_attach = function(_, bufnr)
-      vim.api.nvim_buf_create_user_command(bufnr, 'Format', function()
-        vim.lsp.buf.format { async = true }
-      end, { desc = 'Format buffer with LSP' })
 
       local opts = { buffer = bufnr, noremap = true, silent = true }
 
@@ -117,12 +114,6 @@ return {
         '<leader>ln',
         vim.lsp.buf.rename,
         vim.tbl_extend('force', opts, { desc = 'LSP: Rename Symbol' })
-      )
-      vim.keymap.set(
-        'n',
-        '<leader>lf',
-        vim.lsp.buf.format,
-        vim.tbl_extend('force', opts, { desc = 'LSP: Format Buffer' })
       )
       vim.keymap.set(
         'n',

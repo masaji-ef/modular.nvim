@@ -37,14 +37,17 @@ end
 
 local function check_lsp_servers()
   local servers = { 'lua_ls', 'clangd', 'ruff', 'bashls' }
-  local mason_path = vim.fn.stdpath 'data' .. '/mason/bin/'
+  local mason_bin = vim.fn.stdpath 'data' .. '/mason/bin/'
 
   for _, server in ipairs(servers) do
-    local path = mason_path .. server
-    if vim.fn.filereadable(path) == 1 or vim.fn.executable(server) == 1 then
-      vim.health.ok(string.format('LSP server: %s', server))
+    local mason_path = mason_bin .. server
+    if
+      vim.fn.executable(server) == 1
+      or vim.fn.executable(mason_path) == 1
+    then
+      vim.health.ok(string.format('LSP server binary: %s', server))
     else
-      vim.health.warn(string.format('LSP server missing: %s', server))
+      vim.health.warn(string.format('LSP server binary not found: %s', server))
     end
   end
 end

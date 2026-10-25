@@ -11,6 +11,15 @@ vim.g.loaded_netrwPlugin = 1
 
 vim.g.have_nerd_font = true
 
+-- Отключаем провайдеры (убирает предупреждения в vim.provider)
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+
+-- Отключаем проверку языков в Mason (если поддерживается)
+vim.g.mason_disable_language_checks = true
+
 vim.opt.foldenable = false
 
 require 'options'

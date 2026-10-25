@@ -8,21 +8,21 @@ return {
   lazy = true,
   keys = {
     {
-      '<leader>a',
+      '<leader>ha',
       function()
         require('harpoon'):list():add()
       end,
       desc = 'Harpoon: Add',
     },
     {
-      '<leader>c',
+      '<leader>hc',
       function()
         require('harpoon'):list():clear()
       end,
       desc = 'Harpoon: Clear',
     },
     {
-      '<leader>j',
+      '<leader>hj',
       function()
         local harpoon = require 'harpoon'
         local conf = require('telescope.config').values

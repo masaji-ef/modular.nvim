@@ -1,57 +1,33 @@
 return {
   'folke/which-key.nvim',
   lazy = false,
-  opts = {
-    preset = 'modern',
-    delay = function(ctx)
-      return ctx.plugin and 0 or 200
-    end,
-    triggers = { { '<leader>', mode = { 'n', 'v' } } },
-    spec = {
-      { '<leader>f', group = 'File' },
-      { '<leader>s', group = 'Search' },
-      { '<leader>l', group = 'LSP' },
-      { '<leader>t', group = 'Trouble' },
-      { '<leader>h', group = 'Harpoon' },
-      { '<leader>d', group = 'Delete' },
-      { '<leader>r', group = 'Replace' },
-    },
-    icons = {
-      mappings = true,
-      group = '+',
-      separator = '➜',
-      breadcrumb = '»',
-    },
-    win = {
-      border = 'none',
-      padding = { 1, 2 },
-      title = true,
-      title_pos = 'center',
-    },
-    layout = { width = { min = 20 }, spacing = 3 },
-    sort = { 'local', 'order', 'group', 'alphanum', 'mod' },
-    plugins = {
-      marks = true,
-      registers = true,
-      spelling = { enabled = true, suggestions = 20 },
-      presets = {
-        operators = true,
-        motions = true,
-        text_objects = true,
-        windows = true,
-        nav = true,
-        z = true,
-        g = true,
+  priority = 1000,
+  init = function()
+    vim.o.timeout = true
+    vim.o.timeoutlen = 300
+  end,
+  config = function()
+    require('which-key').setup {
+      preset = 'modern',
+      icons = { mappings = false },
+      win = {
+        border = 'none',
+        padding = { 1, 2 },
+        title = true,
+        title_pos = 'center',
       },
-    },
-  },
-  keys = {
-    {
-      '<leader>?',
-      function()
-        require('which-key').show { global = false }
-      end,
-      desc = 'Buffer Local Keymaps (which-key)',
-    },
-  },
+      layout = { width = { min = 20 }, spacing = 3 },
+      sort = { 'local', 'order', 'group', 'alphanum', 'mod' },
+      plugins = {
+        marks = true,
+        registers = true,
+        spelling = { enabled = true, suggestions = 20 },
+      },
+    }
+
+    -- <Space> больше не маппим: which-key сам показывает меню по leader.
+    vim.keymap.set('n', '<leader>?', function()
+      require('which-key').show { global = false }
+    end, { desc = 'Buffer Local Keymaps (which-key)' })
+  end,
 }

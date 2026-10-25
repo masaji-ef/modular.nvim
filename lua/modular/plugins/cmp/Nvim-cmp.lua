@@ -9,61 +9,41 @@ return {
     {
       'dcampos/nvim-snippy',
       config = function()
-        require('snippy').setup {
-          mappings = {
-            is = {
-              ['<S-Tab>'] = 'previous',
-            },
-          },
-        }
+        require('snippy').setup {}
       end,
     },
     'dcampos/cmp-snippy',
-    {
-      'windwp/nvim-autopairs',
-      event = 'InsertEnter',
-      config = function()
-        require('nvim-autopairs').setup {
-          check_ts = true,
-          ts_config = {
-            lua = { 'string' },
-            javascript = { 'template_string' },
-          },
-          disable_filetype = { 'TelescopePrompt', 'spectre_panel' },
-        }
-      end,
-    },
   },
   config = function()
     local cmp = require 'cmp'
     local snippy = require 'snippy'
 
     local kind_icons = {
-      Text = '',
-      Method = '',
+      Text = '',
+      Method = '',
       Function = '󰊕',
-      Constructor = '',
-      Field = '',
-      Variable = '',
-      Class = '',
-      Interface = '',
-      Module = '',
-      Property = '',
-      Unit = '',
-      Value = '',
-      Enum = '',
-      Keyword = '',
-      Snippet = '',
-      Color = '',
-      File = '',
-      Reference = '',
-      Folder = '',
-      EnumMember = '',
-      Constant = '',
-      Struct = '',
-      Event = '',
-      Operator = '',
-      TypeParameter = '',
+      Constructor = '',
+      Field = '',
+      Variable = '',
+      Class = '',
+      Interface = '',
+      Module = '',
+      Property = '',
+      Unit = '',
+      Value = '',
+      Enum = '',
+      Keyword = '',
+      Snippet = '',
+      Color = '',
+      File = '',
+      Reference = '',
+      Folder = '',
+      EnumMember = '',
+      Constant = '',
+      Struct = '',
+      Event = '',
+      Operator = '',
+      TypeParameter = '',
     }
 
     cmp.setup {

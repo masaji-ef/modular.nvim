@@ -1,6 +1,6 @@
 return {
   'stevearc/conform.nvim',
-  event = 'VeryLazy',
+  event = { 'BufWritePre' },
   config = function()
     local stylua_config = vim.fn.stdpath 'config' .. '/.stylua.toml'
     local stylua_args

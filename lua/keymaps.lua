@@ -1,91 +1,21 @@
 local mappings = {
-  {
-    'x',
-    '<leader>p',
-    [["_dP]],
-    'Paste without overwriting clipboard',
-  },
+  { 'x', '<leader>p', [["_dP]], 'Paste without overwriting clipboard' },
   { { 'n', 'v' }, '<leader>d', [["_d]], 'Delete w/o yank' },
-  {
-    'v',
-    'p',
-    '"_dP',
-    'Paste without losing last yanked text',
-  },
-  {
-    'n',
-    'x',
-    '"_x',
-    'Delete character without copying',
-  },
-  {
-    'n',
-    '<Esc>',
-    '<cmd>nohlsearch<CR>',
-    'Clear search highlights',
-  },
-  {
-    'n',
-    '<C-d>',
-    '<C-d>zz',
-    'Scroll down and center',
-  },
-  {
-    'n',
-    '<C-u>',
-    '<C-u>zz',
-    'Scroll up and center',
-  },
-  {
-    'v',
-    '<',
-    '<gv',
-    'Stay in indent mode when shifting left',
-  },
-  {
-    'v',
-    '>',
-    '>gv',
-    'Stay in indent mode when shifting right',
-  },
-  {
-    'n',
-    'n',
-    'nzzzv',
-    'Search next occurrence and center',
-  },
-  {
-    'n',
-    'N',
-    'Nzzzv',
-    'Search previous occurrence and center',
-  },
+  { 'v', 'p', '"_dP', 'Paste without losing last yanked text' },
+  { 'n', 'x', '"_x', 'Delete character without copying' },
+  { 'n', '<Esc>', '<cmd>nohlsearch<CR>', 'Clear search highlights' },
+  { 'n', '<C-d>', '<C-d>zz', 'Scroll down and center' },
+  { 'n', '<C-u>', '<C-u>zz', 'Scroll up and center' },
+  { 'v', '<', '<gv', 'Stay in indent mode when shifting left' },
+  { 'v', '>', '>gv', 'Stay in indent mode when shifting right' },
+  { 'n', 'n', 'nzzzv', 'Search next occurrence and center' },
+  { 'n', 'N', 'Nzzzv', 'Search previous occurrence and center' },
   { 'n', '<leader>q', '<cmd>q<CR>', 'Close' },
   { 'n', 'q', '<nop>', 'Disable q' },
-  {
-    { 'n', 'i', 'v', 'x', 't', 'c', 's', 'o' },
-    '<Up>',
-    '<nop>',
-    'Disable arrows',
-  },
-  {
-    { 'n', 'i', 'v', 'x', 't', 'c', 's', 'o' },
-    '<Down>',
-    '<nop>',
-    'Disable arrows',
-  },
-  {
-    { 'n', 'i', 'v', 'x', 't', 'c', 's', 'o' },
-    '<Left>',
-    '<nop>',
-    'Disable arrows',
-  },
-  {
-    { 'n', 'i', 'v', 'x', 't', 'c', 's', 'o' },
-    '<Right>',
-    '<nop>',
-    'Disable arrows',
-  },
+  { { 'n', 'i', 'v', 'x', 't', 'c', 's', 'o' }, '<Up>', '<nop>', 'Disable arrows' },
+  { { 'n', 'i', 'v', 'x', 't', 'c', 's', 'o' }, '<Down>', '<nop>', 'Disable arrows' },
+  { { 'n', 'i', 'v', 'x', 't', 'c', 's', 'o' }, '<Left>', '<nop>', 'Disable arrows' },
+  { { 'n', 'i', 'v', 'x', 't', 'c', 's', 'o' }, '<Right>', '<nop>', 'Disable arrows' },
 }
 
 local opts = { noremap = true, silent = true }
@@ -139,31 +69,5 @@ vim.keymap.set('n', '<leader>r', function()
   )
 end, { desc = 'Smart replace' })
 
--- FIXME: temp solution
-vim.keymap.set('n', 's', '<nop>', { noremap = true, silent = true })
-vim.keymap.set('n', 'S', '<nop>', { noremap = true, silent = true })
-vim.keymap.set('n', 'r', '<nop>', { noremap = true, silent = true })
-vim.keymap.set('n', 'R', '<nop>', { noremap = true, silent = true })
+-- Flash handles s, S, r, R in specific modes (см. Flash.lua).
 
-vim.keymap.set('x', 's', '<nop>', { noremap = true, silent = true })
-vim.keymap.set('x', 'S', '<nop>', { noremap = true, silent = true })
-vim.keymap.set('x', 'r', '<nop>', { noremap = true, silent = true })
-vim.keymap.set('x', 'R', '<nop>', { noremap = true, silent = true })
-
-vim.keymap.set('o', 's', '<nop>', { noremap = true, silent = true })
-vim.keymap.set('o', 'S', '<nop>', { noremap = true, silent = true })
-vim.keymap.set('o', 'r', '<nop>', { noremap = true, silent = true })
-vim.keymap.set('o', 'R', '<nop>', { noremap = true, silent = true })
-
-vim.keymap.set('n', 'gf', '<nop>', { noremap = true, silent = true })
-vim.keymap.set('n', 'gF', '<nop>', { noremap = true, silent = true })
-vim.keymap.set('x', 'gf', '<nop>', { noremap = true, silent = true })
-vim.keymap.set('x', 'gF', '<nop>', { noremap = true, silent = true })
-
--- FIXME: mini.move
-vim.keymap.set(
-  'n',
-  '<leader>lk',
-  vim.lsp.buf.hover,
-  { desc = 'LSP: Hover Documentation' }
-)

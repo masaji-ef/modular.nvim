@@ -169,9 +169,7 @@ return {
     },
   },
 
-  vim.keymap.set('n', 'r', '<nop>', { noremap = true, silent = true }),
   vim.keymap.set('n', 'S', '<nop>', { noremap = true, silent = true }),
-  vim.keymap.set('n', 'R', '<nop>', { noremap = true, silent = true }),
   vim.keymap.set('x', 'S', '<nop>', { noremap = true, silent = true }),
   vim.keymap.set('x', 'R', '<nop>', { noremap = true, silent = true }),
   vim.keymap.set('o', 'S', '<nop>', { noremap = true, silent = true }),

@@ -46,7 +46,7 @@ vim.opt.updatetime = 1
 vim.opt.timeoutlen = 300
 
 vim.opt.inccommand = 'split'
-vim.opt.completeopt = 'menuone,noselect'
+vim.opt.completeopt = 'menu,menuone,noinsert'
 vim.opt.pumheight = 10
 vim.opt.formatoptions:remove { 'c', 'r', 'o', 'a', 't' }
 

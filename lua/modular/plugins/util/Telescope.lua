@@ -94,7 +94,7 @@ return {
     )
     vim.keymap.set(
       'n',
-      '<leader>sd',
+      '<leader>sD',
       builtin.diagnostics,
       { desc = 'Telescope: Diagnostics' }
     )
@@ -121,17 +121,9 @@ return {
     end, { desc = 'Telescope: Neovim Files' })
     vim.keymap.set(
       'n',
-      '<leader>s<leader>',
+      '<leader>fb',
       builtin.buffers,
       { desc = 'Telescope: Buffers' }
     )
-    vim.keymap.set('n', '<leader>s/', function()
-      builtin.current_buffer_fuzzy_find(
-        require('telescope.themes').get_dropdown {
-          winblend = 10,
-          previewer = false,
-        }
-      )
-    end, { desc = 'Telescope: Current Buffer (alt)' })
   end,
 }
